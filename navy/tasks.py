@@ -55,7 +55,11 @@ class Admiral(object):
         """
         await a report from a ship
         """
-        report = comm.recv(source=MPI.ANY_SOURCE, tag=MPI.ANY_TAG, status=self.status)
+        report = comm.recv(
+            source=MPI.ANY_SOURCE,
+            tag=MPI.ANY_TAG,
+            status=self.status,
+        )
         ship = self.status.source
 
         print("ship",ship,"reports:",report)
