@@ -167,7 +167,7 @@ class Ship(object):
 
 def get_fleet():
     """
-    get a list of all sailors
+    get a list of all ships in the fleet
     """
     return list(range(1,nships+1))
 
