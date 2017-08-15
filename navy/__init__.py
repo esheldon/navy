@@ -1,5 +1,5 @@
-from . import tasks
-from .tasks import (
+from . import thenavy
+from .thenavy import (
     Admiral,
     Ship,
     ADMIRAL,
