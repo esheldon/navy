@@ -5,13 +5,14 @@ Simpler version of Joe Zuntz naval analogy
 from __future__ import print_function
 
 from mpi4py import MPI
+from .comm import Comm
 
 ADMIRAL    = 0
 
 GO_ASHORE  = 0
 WORK = 1
 
-comm = MPI.COMM_WORLD
+comm = Comm()
 rank = comm.rank
 nships = comm.size-1
 

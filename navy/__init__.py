@@ -5,3 +5,5 @@ from .tasks import (
     ADMIRAL,
     rank,
 )
+
+from . import comm
