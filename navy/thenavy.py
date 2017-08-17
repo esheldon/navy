@@ -41,7 +41,6 @@ class Admiral(object):
         send the next order to the specified ship
         """
         order = self.orders.pop()
-        print("sending order:",order,"to ship",ship)
         comm.send(order, dest=ship, tag=WORK)
 
     def send_ashore(self, ship):
@@ -63,7 +62,6 @@ class Admiral(object):
         )
         ship = self.status.source
 
-        print("ship",ship,"reports:",report)
         return report, ship
 
     def deploy_fleet(self):
