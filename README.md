@@ -17,8 +17,9 @@ def example():
         relocate the ship to a random lon,lat
         """
         np.random.seed(seed)
-        lonlat = np.random.uniform(size=2)
-        return lonlat
+        lon = np.random.uniform(low=-180, max=180)
+        lat = np.random.uniform(low=-90, max=90)
+        return (lon,lat)
 
     if rank==navy.ADMIRAL:
         njobs = 13
