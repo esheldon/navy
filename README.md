@@ -19,7 +19,7 @@ def example():
         np.random.seed(seed)
         lon = np.random.uniform(low=-180, max=180)
         lat = np.random.uniform(low=-90, max=90)
-        return (lon,lat)
+        return np.array([lon,lat])
 
     if rank==navy.ADMIRAL:
         njobs = 13
