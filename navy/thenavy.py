@@ -23,12 +23,15 @@ class Admiral(object):
 
     The admiral does not other work
     """
-    def __init__(self, orders):
+    def __init__(self, orders, save_reports=True):
         self.orders=orders[:]
         self.status = MPI.Status()
 
         self.fleet=get_fleet()
         self.ships_at_sea=[]
+
+        self.save_reports=save_reports
+        self._reports=[]
 
     def orders_remain(self):
         """
@@ -66,9 +69,11 @@ class Admiral(object):
 
     def deploy_fleet(self):
         """
-        deploy the entire fleet
+        deploy the entire fleet and reset the reports
         """
+
         self.ships_at_sea = self.fleet[:]
+        self._reports=[]
 
     def recall_fleet(self):
         """
@@ -81,7 +86,13 @@ class Admiral(object):
     def orchestrate(self):
         """
         deploy the fleet and send out the orders
+
+        parameters
+        ----------
+        save_reports: bool, optional
+            If True, save the reports in the .reports attribute
         """
+
 
         self.deploy_fleet()
 
@@ -96,6 +107,9 @@ class Admiral(object):
             # wait for a report
             report, ship = self.await_report()
 
+            if self.save_reports:
+                self._reports.append(report)
+
             # send the reporting ship a new order
             self.send_order(ship)        
         
@@ -105,8 +119,17 @@ class Admiral(object):
         for tship in self.ships_at_sea:
             report, ship = self.await_report()
 
+            if self.save_reports:
+                self._reports.append(report)
+
         self.recall_fleet()
 
+    @property
+    def reports(self):
+        if hasattr(self,'_reports'):
+            return self._reports
+        else:
+            raise RuntimeError("reports were not saved")
 
 class Ship(object):
     """
