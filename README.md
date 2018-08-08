@@ -28,6 +28,10 @@ def example():
 
         admiral = navy.Admiral(seeds)
         admiral.orchestrate()
+
+        for report in admiral.reports:
+            print(report)
+
     else:
         ship = navy.Ship(relocate)
 		ship.go()
