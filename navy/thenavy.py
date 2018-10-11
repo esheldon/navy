@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 """
-Simpler version of Joe Zuntz naval analogy
+A simpler version of Joe Zuntz naval analogy
 """
 from __future__ import print_function
 
@@ -18,10 +18,10 @@ nships = comm.size-1
 
 class Admiral(object):
     """
-    The admiral send orders to the fleet, and gathers
+    The admiral sends orders to the fleet, and gathers
     reports
 
-    The admiral does not other work
+    The admiral does no other work
     """
     def __init__(self, orders, save_reports=True):
         self.orders=orders[:]
